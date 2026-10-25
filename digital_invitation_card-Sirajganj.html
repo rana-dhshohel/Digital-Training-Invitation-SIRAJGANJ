@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJ5L1MH6T8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WJ5L1MH6T8');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমন্ত্রণপত্র - ক্যাপাসিটি ডেভেলপমেন্ট ডে প্রশিক্ষণ | ব্র্যাক</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Hind Siliguri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brac: {
+                            pink: '#EC008C',
+                            darkPink: '#C70076',
+                            lightPink: '#FDF2F8',
+                            purple: '#7C3AED',
+                            navy: '#1E1B4B',
+                            slate: '#334155'
+                        }
+                    },
+                    fontFamily: {
+                        bangla: ['Hind Siliguri', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 50%, #e0f2fe 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 50px -12px rgba(236, 0, 140, 0.15), 0 10px 25px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(236, 0, 140, 0.2);
+        }
+
+        /* Decorative Envelope Outer Border */
+        .card-border-pattern {
+            position: relative;
+        }
+        .card-border-pattern::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px dashed rgba(236, 0, 140, 0.25);
+            border-radius: 1.5rem;
+            pointer-events: none;
+        }
+
+        /* Page Transition Animations */
+        .page-step {
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hidden-page {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.92) translateY(20px);
+            position: absolute;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .visible-page {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1) translateY(0);
+            position: relative;
+            height: auto;
+        }
+
+        /* Floating Badge Animation */
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: subtleFloat 4s ease-in-out infinite;
+        }
+
+        /* Envelope Flap Animation Effect */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(236, 0, 140, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(236, 0, 140, 0); }
+        }
+        .pulse-button {
+            animation: pulseGlow 2.5s infinite;
+        }
+
+        /* Toast notification */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #1E1B4B;
+            color: #fff;
+            text-align: center;
+            border-radius: 9999px;
+            padding: 12px 24px;
+            position: fixed;
+            z-index: 50;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media print {
+            body { background: white; }
+            .no-print { display: none !important; }
+            #coverPage { display: none !important; }
+            #mainPage { 
+                opacity: 1 !important; 
+                transform: none !important; 
+                position: relative !important;
+                height: auto !important;
+            }
+            .glass-card { box-shadow: none; border: 2px solid #EC008C; }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-3 sm:p-6 text-brac-slate">
+
+    <!-- Ambient Background Lighting -->
+    <div class="fixed top-10 left-10 w-48 h-48 bg-pink-300/40 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed bottom-10 right-10 w-56 h-56 bg-purple-300/40 rounded-full blur-3xl pointer-events-none"></div>
+
+    <main class="w-full max-w-2xl my-auto relative">
+
+        <!-- ========================================== -->
+        <!-- 1ST PAGE: COVER / ENVELOPE LANDING SCREEN -->
+        <!-- ========================================== -->
+        <section id="coverPage" class="page-step visible-page">
+            <article class="glass-card card-border-pattern rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[500px]">
+                
+                <!-- Decorative Top Tag -->
+                <div class="mb-6">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-pink-100 text-brac-pink font-semibold text-xs sm:text-sm rounded-full shadow-sm">
+                        <i class="fa-solid fa-envelope-open-text"></i> ডিজিটাল নিমন্ত্রণপত্র
+                    </span>
+                </div>
+
+                <!-- BRAC Branding -->
+                <div class="mb-6">
+                    <div class="inline-flex items-center justify-center bg-brac-pink text-white font-black text-3xl tracking-widest px-5 py-2 rounded-xl shadow-md mb-2">
+                        brac
+                    </div>
+                    <p class="text-xs sm:text-sm font-semibold tracking-wide text-brac-pink/90 uppercase">
+                        সামাজিক ক্ষমতায়ন ও আইনি সুরক্ষা কর্মসূচি
+                    </p>
+                </div>
+
+                <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-brac-pink to-transparent my-2 opacity-40"></div>
+
+                <!-- Event Badge Title -->
+                <div class="my-6">
+                    <p class="text-sm text-slate-500 font-medium mb-1">আপনাকে সাদর আমন্ত্রণ জানানো হচ্ছে</p>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold text-brac-navy leading-snug">
+                        ক্যাপাসিটি ডেভেলপমেন্ট ডে প্রশিক্ষণ
+                    </h1>
+                </div>
+
+                <!-- Slogan Highlight on Cover -->
+                <div class="my-3 px-4 py-2.5 bg-pink-50 border border-pink-200/80 rounded-2xl max-w-md">
+                    <p class="text-sm sm:text-base font-bold text-brac-darkPink">
+                        “আর নয় বাল্যবিয়ে, রুখব এবার সবাই মিলে”
+                    </p>
+                </div>
+
+                <!-- Animated Interactive CTA Button -->
+                <div class="mt-8">
+                    <button onclick="openMainInvitation()" class="pulse-button inline-flex items-center gap-3 bg-gradient-to-r from-brac-pink to-purple-600 hover:from-brac-darkPink hover:to-purple-700 text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 transition duration-300 cursor-pointer">
+                        <span>আমন্ত্রণপত্রটি খুলুন</span>
+                        <i class="fa-solid fa-envelope-open text-xl animate-bounce"></i>
+                    </button>
+                </div>
+
+                <p class="text-xs text-slate-400 mt-6">
+                    <i class="fa-solid fa-location-dot text-brac-pink/70 mr-1"></i> গুগল মিট, অনলাইন
+                </p>
+
+            </article>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- 2ND PAGE: MAIN INVITATION CARD CONTENT -->
+        <!-- ========================================== -->
+        <section id="mainPage" class="page-step hidden-page">
+            
+            <!-- Top Controls (Print & Back to Cover) -->
+            <div class="no-print flex justify-between items-center mb-4 px-2">
+                <button onclick="backToCover()" class="bg-white/80 hover:bg-white text-brac-navy text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-sm hover:shadow transition border border-gray-200 flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left text-brac-pink"></i> কোভার পেজে ফিরে যান
+                </button>
+
+                <div class="flex gap-2">
+                    <button onclick="triggerConfetti()" title="উদযাপন করুন" class="bg-white/80 hover:bg-white text-brac-pink p-2.5 rounded-full shadow-sm hover:shadow transition border border-pink-100 flex items-center justify-center w-10 h-10">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </button>
+                    <button onclick="window.print()" title="প্রিন্ট / PDF সেভ করুন" class="bg-white/80 hover:bg-white text-brac-slate p-2.5 rounded-full shadow-sm hover:shadow transition border border-gray-100 flex items-center justify-center w-10 h-10">
+                        <i class="fa-solid fa-print"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Invitation Card Body -->
+            <article class="glass-card card-border-pattern rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+                
+                <!-- BRAC Header & Logo -->
+                <header class="text-center mb-6 pt-1">
+                    <div class="inline-flex items-center justify-center bg-brac-pink text-white font-black text-2xl tracking-widest px-4 py-1.5 rounded-lg shadow-sm mb-2">
+                        brac
+                    </div>
+                    <p class="text-xs sm:text-sm font-semibold tracking-wide text-brac-pink uppercase">
+                        সামাজিক ক্ষমতায়ন ও আইনি সুরক্ষা কর্মসূচি
+                    </p>
+                </header>
+
+                <!-- Program Title Header -->
+                <div class="text-center mb-6">
+                    <span class="inline-block px-4 py-1 bg-pink-100 text-brac-darkPink text-xs sm:text-sm font-semibold rounded-full mb-2">
+                        <i class="fa-solid fa-star text-brac-pink mr-1"></i> বিশেষ সাদর আমন্ত্রণ
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-brac-navy mt-1 leading-snug">
+                        ক্যাপাসিটি ডেভেলপমেন্ট ডে প্রশিক্ষণ/সিরাজগঞ্জ টিম
+                    </h2>
+                </div>
+
+                <!-- Slogan Callout Badge -->
+                <div class="animate-float text-center mb-7">
+                    <div class="inline-block bg-gradient-to-r from-brac-pink to-purple-600 text-white px-5 py-2.5 rounded-2xl shadow-md">
+                        <p class="text-sm sm:text-lg font-bold">
+                            <i class="fa-solid fa-quote-left text-xs opacity-70 mr-1.5"></i>
+                            আর নয় বাল্যবিয়ে, রুখব এবার সবাই মিলে
+                            <i class="fa-solid fa-quote-right text-xs opacity-70 ml-1.5"></i>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Main Message Section -->
+                <div class="bg-white/90 border border-pink-100 rounded-2xl p-5 sm:p-6 mb-7 shadow-sm text-center relative">
+                    <i class="fa-solid fa-heart-pulse text-brac-pink/10 text-6xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"></i>
+                    <p class="text-base sm:text-lg text-slate-700 leading-relaxed font-normal relative z-10">
+                        জীবন দক্ষতা প্রশিক্ষণ মানুষকে দৈনন্দিন জীবনের বিভিন্ন সমস্যা ও চ্যালেঞ্জ মোকাবিলা করতে শেখায়। এ প্রশিক্ষণের মাধ্যমে কিশোরীরা আত্মবিশ্বাস, যোগাযোগ, সিদ্ধান্ত গ্রহণ, সমস্যা সমাধান, নেতৃত্ব ও দলগত কাজের দক্ষতা অর্জন করে।
+                    </p>
+                </div>
+
+                <!-- Event Info Grid (Date & Venue) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <!-- Date Box -->
+                    <div class="flex items-center p-4 rounded-2xl bg-pink-50/70 border border-pink-100">
+                        <div class="w-12 h-12 rounded-xl bg-brac-pink text-white flex items-center justify-center text-xl shrink-0 mr-4 shadow-sm">
+                            <i class="fa-regular fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-brac-pink uppercase tracking-wider block">তারিখ ও সময়</span>
+                            <span class="text-base font-bold text-brac-navy">২৬ অক্টোবর ২০২৬</span>
+                            <span class="text-xs text-slate-600 block">রোজ সোমবার/১১:৩০-১:৩০</span>
+                        </div>
+                    </div>
+
+                    <!-- Venue Box -->
+                    <div class="flex items-center p-4 rounded-2xl bg-purple-50/70 border border-purple-100">
+                        <div class="w-12 h-12 rounded-xl bg-purple-600 text-white flex items-center justify-center text-xl shrink-0 mr-4 shadow-sm">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-purple-600 uppercase tracking-wider block">স্থান</span>
+                            <span class="text-base font-bold text-brac-navy"> গুগল মিট</span>
+                            <span class="text-xs text-slate-600 block"> অনলাইন</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organizers Footer -->
+                <footer class="text-center pt-4 border-t border-pink-100">
+                    <p class="text-xs text-slate-500 font-medium mb-1">আয়োজনে</p>
+                    <p class="text-sm font-bold text-brac-navy">
+                        ব্র্যাক, সামাজিক ক্ষমতায়ন ও আইনি সুরক্ষা কর্মসূচি
+                    </p>
+                </footer>
+
+            </article>
+
+            <!-- Interactive Action Buttons Bar -->
+            <section class="no-print mt-6 flex flex-wrap justify-center gap-3 px-1">
+                <!-- WhatsApp Share -->
+                <button onclick="shareWhatsApp()" class="flex-1 min-w-[140px] bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-4 rounded-2xl shadow-sm hover:shadow-md transition flex items-center justify-center gap-2 text-sm cursor-pointer">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    হোয়াটসঅ্যাপে পাঠান
+                </button>
+
+                <!-- Add to Google Calendar -->
+                <button onclick="addToCalendar()" class="flex-1 min-w-[140px] bg-brac-navy hover:bg-slate-800 text-white font-medium py-3 px-4 rounded-2xl shadow-sm hover:shadow-md transition flex items-center justify-center gap-2 text-sm cursor-pointer">
+                    <i class="fa-regular fa-calendar-plus text-lg"></i>
+                    ক্যালেন্ডারে রাখুন
+                </button>
+
+                <!-- Copy Link -->
+                <button onclick="copyInvitationLink()" class="bg-white hover:bg-gray-50 text-slate-700 font-medium py-3 px-4 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-200 flex items-center justify-center gap-2 text-sm cursor-pointer">
+                    <i class="fa-regular fa-copy text-lg text-brac-pink"></i>
+                    লিংক কপি
+                </button>
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="toast">লিংক কপি করা হয়েছে!</div>
+
+    <!-- JavaScript Navigation & Interactive Functions -->
+    <script>
+        // Open Main Invitation Page from Cover Page
+        function openMainInvitation() {
+            const cover = document.getElementById("coverPage");
+            const main = document.getElementById("mainPage");
+
+            cover.classList.remove("visible-page");
+            cover.classList.add("hidden-page");
+
+            setTimeout(() => {
+                main.classList.remove("hidden-page");
+                main.classList.add("visible-page");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                triggerConfetti();
+            }, 300);
+        }
+
+        // Return Back to Cover Page
+        function backToCover() {
+            const cover = document.getElementById("coverPage");
+            const main = document.getElementById("mainPage");
+
+            main.classList.remove("visible-page");
+            main.classList.add("hidden-page");
+
+            setTimeout(() => {
+                cover.classList.remove("hidden-page");
+                cover.classList.add("visible-page");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 300);
+        }
+
+        // Trigger celebratory confetti effect
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 70,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#EC008C', '#7C3AED', '#F59E0B', '#10B981']
+                });
+            }
+        }
+
+        // Toast Message Notification
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.className = "show";
+            setTimeout(() => { 
+                toast.className = toast.className.replace("show", ""); 
+            }, 3000);
+        }
+
+        // Copy Invitation Page Link
+        function copyInvitationLink() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            
+            showToast("আমন্ত্রণপত্রের লিংক কপি হয়েছে!");
+        }
+
+        // Share via WhatsApp
+        function shareWhatsApp() {
+            const text = encodeURIComponent("আপনাকে ব্র্যাকের 'ক্যাপাসিটি ডেভেলপমেন্ট ডে প্রশিক্ষণ||সিরাজগঞ্জ টিম'-এ সাদর আমন্ত্রণ।\n\nতারিখ: ২৬ অক্টোবর ২০২৬\nস্থান:অনলাইন-১১:৩০-১:৩০ অনলাইন\n\nবিস্তারিত আমন্ত্রণপত্রটি দেখতে লিংকে ক্লিক করুন: ") + encodeURIComponent(window.location.href);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        // Add Event to Google Calendar (Oct 27, 2026)
+        function addToCalendar() {
+            const title = encodeURIComponent("ক্যাপাসিটি ডেভেলপমেন্ট ডে প্রশিক্ষণ||সিরাজগঞ্জ টিম - ব্র্যাক");
+            const details = encodeURIComponent("স্লোগান: আর নয় বাল্যবিয়ে, রুখব এবার সবাই মিলে।\nআয়োজনে: ব্র্যাক, সামাজিক ক্ষমতায়ন ও আইনি সুরক্ষা কর্মসূচি।");
+            const location = encodeURIComponent("গুগল মিট, অনলাইন");
+            // Event Timing: Oct 27, 2026, 10:00 AM BDT (04:00 UTC) to 4:00 PM BDT (10:00 UTC)
+            const dates = "20261027T040000Z/20261027T100000Z"; 
+
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+            window.open(calendarUrl, '_blank');
+        }
+    </script>
+
+</body>
+</html>
